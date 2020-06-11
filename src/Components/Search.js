@@ -21,11 +21,12 @@ const Search = () => {
     setSearchResult([]);
     setRandom(false);
     fetch(
-      `https://api.spoonacular.com/recipes/search?query=${state}&number=12&apiKey=${apiKey}`
+      `https://api.spoonacular.com/recipes/search?query=${state}&number=12&instructionsRequired=true&apiKey=${apiKey}`
     )
       .then((resp) => resp.json())
       .then((resp) => setSearchResult([resp]));
     history.push("/");
+    console.log(searchResult);
   };
 
   const randButton = (e) => {
@@ -33,11 +34,12 @@ const Search = () => {
     setSearchResult([]);
     setRandom(true);
     fetch(
-      `https://api.spoonacular.com/recipes/random?number=12&apiKey=9222b90548444604b170a5fe8cc9ecfb`
+      `https://api.spoonacular.com/recipes/random?number=12&instructionsRequired=true&apiKey=9222b90548444604b170a5fe8cc9ecfb`
     )
       .then((resp) => resp.json())
       .then((resp) => setSearchResult([resp]));
     history.push("/");
+    console.log(searchResult);
   }
 
   return (

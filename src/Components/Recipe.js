@@ -4,11 +4,14 @@ import { useContext } from "react";
 import { Context } from "../Context.js";
 
 const Recipe = ({ match }) => {
-  /* 
-  const {value1,value2} = useContext(Context);
-  let [searchResult,setSearchResult] = value1;
-  let [randomResult, setSearchResult] = value2;
+  let { value1, value2 } = useContext(Context);
+  let [searchResult, setSearchResult] = value1;
+  let [random, setRandom] = value2;
   let [width, height] = [312, 150];
+  let tag;
+  let id = match.params.id;
+  let idTitle = "";
+
   if (searchResult.length === 0 || searchResult === undefined) {
     return (
       <div className="recipeContainer">
@@ -17,19 +20,30 @@ const Recipe = ({ match }) => {
       </div>
     );
   } else {
+    if (random) {
+      tag = "recipes";
+    } else {
+      tag = "results";
+    }
+
+    searchResult[0][tag].map((item) => {
+      if ((item.id).toString() === id) {
+        idTitle = item.title;
+      }
+    });
+
     return (
       <div className="recipeContainer">
-        <h2>Recipe: {match.params.id}</h2>
-            <img
-              src={`https://spoonacular.com/recipeImages/${match.params.id}-${width}x${height}.jpg`}
-            />
-          <Link to="/">Home</Link>
+        <h2 className="recipeTitle">{idTitle}</h2>
+        <img
+          src={`https://spoonacular.com/recipeImages/${id}-${width}x${height}.jpg`}
+        />
+        <p></p>
+
+        <Link to="/">Home</Link>
       </div>
     );
-  } */
-  return (
-  <h2>Recipe</h2>
-  )
+  }
 };
 
 export default Recipe;
