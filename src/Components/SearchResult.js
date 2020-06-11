@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Context} from '../Context.js';
 
 const SearchResult = ({value1}) => {
     let itemVec = [];

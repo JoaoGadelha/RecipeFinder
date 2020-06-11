@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../Context.js";
-import Search from "./Search.js";
 import { Link } from "react-router-dom";
 
 const MainPage = () => {
@@ -26,7 +25,7 @@ const MainPage = () => {
     console.log(searchResult);
     itemVec = [];
     const limit = 20;
-    searchResult[0][tag].map((item) => {
+    searchResult[0][tag].forEach((item) => {
       if (item.title.length > limit) {
         itemVec.push(...[item.title.slice(0, limit) + "..."]);
       } else {
@@ -49,7 +48,7 @@ const MainPage = () => {
           {searchResult[0][tag].map((item, index) => (
             <Link to={`/${item.id}`} className="recipeItem" key={item.id}>
               <div>
-                <img
+                <img alt='RecipeImage'
                   src={`https://spoonacular.com/recipeImages/${item.id}-${width}x${height}.jpg`}
                 />
                 <i className="fas fa-utensils"></i>{" "}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../Context.js";
@@ -10,8 +10,8 @@ const Recipe = ({ match }) => {
   let [width, height] = [312, 150];
   let tag;
   let id = match.params.id;
-  let idTitle = "";
-
+  let item = undefined;
+  console.log(searchResult);
   if (searchResult.length === 0 || searchResult === undefined) {
     return (
       <div className="recipeContainer">
@@ -26,23 +26,31 @@ const Recipe = ({ match }) => {
       tag = "results";
     }
 
-    searchResult[0][tag].map((item) => {
-      if ((item.id).toString() === id) {
-        idTitle = item.title;
+    searchResult[0][tag].forEach((i) => {
+      if (i.id.toString() === id) {
+        /*         idTitle = i.title;
+         */ item = i;
       }
     });
-
-    return (
-      <div className="recipeContainer">
-        <h2 className="recipeTitle">{idTitle}</h2>
-        <img
-          src={`https://spoonacular.com/recipeImages/${id}-${width}x${height}.jpg`}
-        />
-        <p></p>
-
-        <Link to="/">Home</Link>
-      </div>
-    );
+    if (item === undefined) {
+      return (
+        <div className="recipeContainer">
+          <h2>Recipe List is empty</h2>
+          <Link to="/">Home</Link>
+        </div>
+      );
+    } else {
+      return (
+        <div className="recipeContainer">
+          <h2 className="recipeTitle">{item.title}</h2>
+          <img alt='RecipeImage'
+            src={`https://spoonacular.com/recipeImages/${id}-${width}x${height}.jpg`}
+          />
+          {item.instructions}
+          <Link to="/">Home</Link>
+        </div>
+      );
+    }
   }
 };
 

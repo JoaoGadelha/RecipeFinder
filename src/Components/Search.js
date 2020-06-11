@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import logo from "../logo.jpg";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import { Context } from "../Context.js";
 import { useHistory } from "react-router-dom";
 
