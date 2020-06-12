@@ -21,8 +21,6 @@ const MainPage = () => {
   }
 
   const limitString = () => {
-    console.log("tag " + tag);
-    console.log(searchResult);
     itemVec = [];
     const limit = 20;
     searchResult[0][tag].forEach((item) => {

@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../Context.js";
@@ -11,7 +11,11 @@ const Recipe = ({ match }) => {
   let tag;
   let id = match.params.id;
   let item = undefined;
-  console.log(searchResult);
+
+  /* function createMarkup() {
+    return {__html: item.instructions};
+  } */
+
   if (searchResult.length === 0 || searchResult === undefined) {
     return (
       <div className="recipeContainer">
@@ -35,7 +39,7 @@ const Recipe = ({ match }) => {
     if (item === undefined) {
       return (
         <div className="recipeContainer">
-          <h2>Recipe List is empty</h2>
+          <h2>Item not found</h2>
           <Link to="/">Home</Link>
         </div>
       );
@@ -43,10 +47,24 @@ const Recipe = ({ match }) => {
       return (
         <div className="recipeContainer">
           <h2 className="recipeTitle">{item.title}</h2>
-          <img alt='RecipeImage'
+          <img
+            alt="RecipeImage"
             src={`https://spoonacular.com/recipeImages/${id}-${width}x${height}.jpg`}
           />
-          {item.instructions}
+          {/* <div dangerouslySetInnerHTML={createMarkup()} /> */}
+          <ul>
+            {item.analyzedInstructions.map((iter) => {
+              return (
+                <div>
+                  <h2>---------------</h2>
+                  {iter.steps.map((iter2) => {
+                    return <li key={item.id}>{iter2.step}</li>;
+                  })}
+                </div>
+              );
+            })}
+          </ul>
+
           <Link to="/">Home</Link>
         </div>
       );

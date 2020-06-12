@@ -25,7 +25,6 @@ const Search = () => {
       .then((resp) => resp.json())
       .then((resp) => setSearchResult([resp]));
     history.push("/");
-    console.log(searchResult);
   };
 
   const randButton = (e) => {
@@ -38,7 +37,6 @@ const Search = () => {
       .then((resp) => resp.json())
       .then((resp) => setSearchResult([resp]));
     history.push("/");
-    console.log(searchResult);
   }
 
   return (
