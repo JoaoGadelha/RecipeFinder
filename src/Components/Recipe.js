@@ -1,22 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../Context.js";
+import Spinner from './Spinner.js';
 
 const Recipe = ({ match }) => {
-  let { value1, value2 } = useContext(Context);
-  let [searchResult, setSearchResult] = value1;
-  let [random, setRandom] = value2;
+  let [searchResult, setSearchResult, setIdTitleVec, apiKey] = useContext(Context);
+  let [item, setItem] = useState({});
   let [width, height] = [312, 150];
-  let tag;
   let id = match.params.id;
-  let item = undefined;
+  let idTitleVec = setIdTitleVec();
 
   /* function createMarkup() {
     return {__html: item.instructions};
   } */
 
-  if (searchResult.length === 0 || searchResult === undefined) {
+  if (!(idTitleVec && idTitleVec.length)) {
     return (
       <div className="recipeContainer">
         <h2>Recipe List is empty</h2>
@@ -24,22 +23,21 @@ const Recipe = ({ match }) => {
       </div>
     );
   } else {
-    if (random) {
-      tag = "recipes";
-    } else {
-      tag = "results";
-    }
-
-    searchResult[0][tag].forEach((i) => {
+    idTitleVec.forEach((i) => {
       if (i.id.toString() === id) {
-        /*         idTitle = i.title;
-         */ item = i;
+        fetch(
+          `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${apiKey}`
+        )
+          .then((resp) => resp.json())
+          .then((resp) => {      
+            setItem(resp);
+          });
       }
     });
-    if (item === undefined) {
+    if (Object.entries(item).length === 0) {
       return (
         <div className="recipeContainer">
-          <h2>Item not found</h2>
+          <Spinner/>
           <Link to="/">Home</Link>
         </div>
       );
@@ -53,18 +51,23 @@ const Recipe = ({ match }) => {
           />
           {/* <div dangerouslySetInnerHTML={createMarkup()} /> */}
           <ul>
-            {item.analyzedInstructions.map((iter) => {
+            {item.analyzedInstructions.map((iter, index) => {
               return (
-                <div>
-                  <h2>---------------</h2>
-                  {iter.steps.map((iter2) => {
-                    return <li key={item.id}>{iter2.step}</li>;
+                <div key={Math.random()} className="recipeStepContainer">
+                  {iter.steps.map((iter2, index2) => {
+                    return (
+                      <div key={Math.random()}>
+                        <li key={Math.random()} className="IDK">
+                          <h2 key={Math.random()}>Step {index2 + 1}</h2>
+                          {iter2.step}
+                        </li>
+                      </div>
+                    );
                   })}
                 </div>
               );
             })}
           </ul>
-
           <Link to="/">Home</Link>
         </div>
       );

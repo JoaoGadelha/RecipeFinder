@@ -69,6 +69,10 @@ body {
   text-align: center;
 }
 
+.searchContainer input:focus::placeholder {
+  color:transparent;
+}
+
 .divLogo {
   margin-top: 50px;
   height: 200px;
@@ -148,16 +152,25 @@ body {
 /* Recipe.js */
 
 .recipeContainer {
-  text-align: center;
+  text-align: left;
   width: 70%;
   margin: 0 auto;
   border: 0;
 }
 
-.recipeContainer .recipeItem {
-  border: solid 1px black;
-  padding: 10px;
-  margin: 10px;
+
+
+.recipeContainer .IDK {
+  border:solid rgb(255, 173, 173) 1px;
+  margin-bottom:20px;
+  padding:27px 40px;
+  list-style-type:none;
+  border-radius:10px;
+  box-shadow:2px 2px 5px rgb(255, 82, 111);  
+}
+
+.recipeContainer .IDK h2 {
+  margin-bottom:10px;
 }
 
 .recipeContainer .recipeTitle {
@@ -166,6 +179,7 @@ body {
   color: rgb(255, 106, 106);
   font-weight: normal;
   margin-bottom: 20px;
+  text-align:center;
 }
 
 .recipeContainer img {

@@ -4,11 +4,8 @@ import { Context } from "../Context.js";
 import { useHistory } from "react-router-dom";
 
 const Search = () => {
-  let { value1, value2 } = useContext(Context);
-  let [searchResult, setSearchResult] = value1;
-  let [random, setRandom] = value2;
+  let [searchResult, setSearchResult, setIdTitleVec, apiKey] = useContext(Context);
   const [state, setState] = useState("");
-  let apiKey = "9222b90548444604b170a5fe8cc9ecfb";
   const history = useHistory();
   const onChange = (e) => {
     e.preventDefault();
@@ -16,26 +13,24 @@ const Search = () => {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    setSearchResult([]);
-    setRandom(false);
+    e.preventDefault(); 
+    setSearchResult({});   
     fetch(
       `https://api.spoonacular.com/recipes/search?query=${state}&number=12&instructionsRequired=true&apiKey=${apiKey}`
     )
       .then((resp) => resp.json())
-      .then((resp) => setSearchResult([resp]));
+      .then((resp) => setSearchResult(resp));
     history.push("/");
   };
 
   const randButton = (e) => {
     e.preventDefault();
-    setSearchResult([]);
-    setRandom(true);
+    setSearchResult({});
     fetch(
-      `https://api.spoonacular.com/recipes/random?number=12&instructionsRequired=true&apiKey=9222b90548444604b170a5fe8cc9ecfb`
+      `https://api.spoonacular.com/recipes/random?number=12&instructionsRequired=true&apiKey=${apiKey}`
     )
       .then((resp) => resp.json())
-      .then((resp) => setSearchResult([resp]));
+      .then((resp) => setSearchResult(resp));
     history.push("/");
   }
 
@@ -45,7 +40,7 @@ const Search = () => {
         <img src={logo} alt="logo" className="searchLogo"></img>
       </div>
       <form onSubmit={onSubmit}>
-        <input placeholder="Search here..." value={state} onChange={onChange} />
+        <input placeholder="Search here..." value={state} onChange={onChange}/>
         <div className="buttonContainer">
           <button>Search</button>
           <button onClick={randButton}>Random</button>
