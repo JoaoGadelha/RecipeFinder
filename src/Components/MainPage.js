@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../Context.js";
 import { Link } from "react-router-dom";
-import Spinner from './Spinner.js'
+import Spinner from "./Spinner.js";
+import sadface from './sadface.png';
 
 const MainPage = () => {
   /* let { value1, value2 } = useContext(Context);
@@ -18,7 +19,8 @@ const MainPage = () => {
   const limitString = () => {
     itemVec = [];
     const limit = 20;
-    if (idTitleVec.length !== 0) {
+
+    if (idTitleVec.length !== 0 && idTitleVec !== "failure") {
       idTitleVec.forEach((item) => {
         if (item.title.length > limit) {
           itemVec.push(...[item.title.slice(0, limit) + "..."]);
@@ -29,10 +31,22 @@ const MainPage = () => {
     }
   };
 
-  if (!(idTitleVec && idTitleVec.length)) {
+  if (idTitleVec === "failure") {
     return (
-      <Spinner/>
+      <div style = {{textAlign:'center', marginTop:'-20px'}}>
+        <img src = {sadface} style = {{width:'100px'}}/>
+        <h2 style={{ textAlign: "center" }}>
+          Limit of daily API calls reached           
+        </h2>
+        <h2 style={{textAlign:'center'}}>
+          Try again tomorrow
+        </h2>
+      </div>
     );
+  }
+
+  if (!(idTitleVec && idTitleVec.length)) {
+    return <Spinner />;
   } else {
     limitString();
     return (

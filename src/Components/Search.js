@@ -4,7 +4,7 @@ import { Context } from "../Context.js";
 import { useHistory } from "react-router-dom";
 
 const Search = () => {
-  let [searchResult, setSearchResult, setIdTitleVec, apiKey] = useContext(Context);
+  let [searchResult, setSearchResult, setIdTitleVec, apiKey, numberRecipes] = useContext(Context);
   const [state, setState] = useState("");
   const history = useHistory();
   const onChange = (e) => {
@@ -16,7 +16,7 @@ const Search = () => {
     e.preventDefault(); 
     setSearchResult({});   
     fetch(
-      `https://api.spoonacular.com/recipes/search?query=${state}&number=12&instructionsRequired=true&apiKey=${apiKey}`
+      `https://api.spoonacular.com/recipes/search?query=${state}&number=${numberRecipes}&instructionsRequired=true&apiKey=${apiKey}`
     )
       .then((resp) => resp.json())
       .then((resp) => setSearchResult(resp));
@@ -27,7 +27,7 @@ const Search = () => {
     e.preventDefault();
     setSearchResult({});
     fetch(
-      `https://api.spoonacular.com/recipes/random?number=12&instructionsRequired=true&apiKey=${apiKey}`
+      `https://api.spoonacular.com/recipes/random?number=${numberRecipes}&instructionsRequired=true&apiKey=${apiKey}`
     )
       .then((resp) => resp.json())
       .then((resp) => setSearchResult(resp));
