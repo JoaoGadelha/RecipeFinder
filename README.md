@@ -1,5 +1,7 @@
 SPA based on the Spoonacular API. Displays recipes based on a user search.
 
+Live site : https://joaoricardotg-recipefinder.netlify.app
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
