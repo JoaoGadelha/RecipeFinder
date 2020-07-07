@@ -1,3 +1,5 @@
+SPA based on the Spoonacular API. Displays recipes based on a user search.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
