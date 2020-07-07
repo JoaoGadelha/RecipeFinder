@@ -1,4 +1,4 @@
-SPA implemented in REACT based on the Spoonacular API. Displays recipes based on a user search.
+SPA website implemented in REACT based on the Spoonacular API. Displays recipes based on a user search.
 
 Live site : https://joaoricardotg-recipefinder.netlify.app
 
