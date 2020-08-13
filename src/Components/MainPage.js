@@ -18,7 +18,7 @@ const MainPage = () => {
 
   const limitString = () => {
     itemVec = [];
-    const limit = 20;
+    const limit = 15;
 
     if (idTitleVec.length !== 0 && idTitleVec !== "failure") {
       idTitleVec.forEach((item) => {

@@ -1,6 +1,8 @@
 body {
   background: linear-gradient(rgb(255, 255, 255), rgb(255, 244, 244), rgb(252, 240, 240), rgb(255, 255, 255));
-}
+  }
+
+  
 
 * {
   margin: 0;
@@ -17,6 +19,7 @@ body {
   padding: 10px 0;
   font-family: 'Tangerine', serif;
   font-size: 30px;
+  width:100vw;
 }
 
 .App .navbarLink {
@@ -75,8 +78,9 @@ body {
 
 .divLogo {
   margin-top: 50px;
-  height: 200px;
-  width: 20%;
+  height: auto;
+  width: 200px;
+  display:block;
 }
 
 .divLogo img {
@@ -125,7 +129,7 @@ body {
 }
 
 .mainContainer .recipeItem .fas {
-  display: inline;
+  margin-top:20px;
 }
 
 .mainContainer .recipeItem:hover {
@@ -187,4 +191,21 @@ body {
   display:block;
   margin:0 auto;
   margin-bottom:20px;
+}
+
+@media (max-width: 768px) {
+
+  .mainContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 425px) {
+  .mainContainer {
+    display:block;
+  }
+
+  .mainContainer > * {
+    margin-bottom:20px;
+  }
 }

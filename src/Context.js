@@ -5,7 +5,7 @@ export const Context = React.createContext();
 
 export const Provider = (props) => {
   let [searchResult, setSearchResult] = useState({});
-  let apiKey = "b2a5298928f34afcba0d69eac20faedb";
+  let apiKey = "b2a5298928f34afcba0d69eac20faedb"; // Remove api key from here. This is not safe.
   let numberRecipes = 12;
   /* 1ac572967e9f4ccfb15e43d732b239b9 */
   /* ddf9c8f7ce9244c2b9c4114d1238c9ff */

@@ -7,6 +7,7 @@ const Search = () => {
   let [searchResult, setSearchResult, setIdTitleVec, apiKey, numberRecipes] = useContext(Context);
   const [state, setState] = useState("");
   const history = useHistory();
+
   const onChange = (e) => {
     e.preventDefault();
     setState(e.target.value);
